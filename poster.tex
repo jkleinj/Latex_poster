@@ -45,13 +45,15 @@ of water molecules provides a high level of detail in regard to solute-solvent
 interactions, treating their degrees of freedom becomes gradually prohibitive
 with increasing system size. For systems whose detailed water interactions are
 not relevant to the properties under study, implicit solvation is a suitable
-method to represent the solvent-solute interactions \cite{Kleinjung_2014}.
+method to represent the solvent-solute interactions
+\cite{Allison:2011p4547,Kleinjung_2014}.
 \end{myblock}\vfill
 %______________________________________________________________________________
 \begin{myblock}{SASA Model}
 The interaction potential $V^{impl}$ between the solvent and all solute
 atoms $i$ can be assumed to be proportional to its solvent accessible
-surface area (SASA), scaled by an atom-specific energy term \sig:
+surface area (SASA) \cite{Hasel:1988p116},
+scaled by an atom-specific energy term \sig:
 \begin{equation}
 \label{eq:sasapot}
 V^{impl}(\mathbf{r}^N) \; = \; \sum_{i=1}^{N} \, \sigma_i^{SASA} \, A_i(\mathbf{r}^N) \; .
@@ -94,8 +96,9 @@ solvent with the derivative of the atomic SASA.}
 \begin{myblock}{\sig{} Parameters}
 Using the solvation forces of 188 topologically diverse proteins in explicit
 and implicit solvent, a robust set of \sig{} parameters was derived by
-force matching \cite{Kleinjung_2012a}. Hydrophilic $N$ and $O$ atoms have
-negative \sig{} parameters, those of hydrophobic $C$ atoms are positive.
+force matching \cite{Fraternali:1996p939,Kleinjung_2012a}.
+Hydrophilic $N$ and $O$ atoms adopt negative \sig{} parameters,
+those of hydrophobic $C$ atoms are positive.
 \vspace{2cm}
 \begin{figure}
 \begin{minipage}{1.0\textwidth}
@@ -106,7 +109,35 @@ negative \sig{} parameters, those of hydrophobic $C$ atoms are positive.
 \end{figure}
 \end{myblock}\vfill
 %______________________________________________________________________________
-\begin{myblock}{Friction}
+}\end{minipage}
+\end{beamercolorbox}
+\end{column}
+%______________________________________________________________________________
+\begin{column}{.45\textwidth}
+\begin{beamercolorbox}[center]{postercolumn}
+\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
+\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+%______________________________________________________________________________
+\begin{myblock}{Friction Model}
+Forces occurring in molecular dynamics fluctuate over time, yielding
+charcteristic force distributions. While the \sig{} term models the mean
+force between solute and solvent, the variance of the force distributions
+are coupled to the friction parameter $\gamma_i$:
+\begin{equation}
+\left< (\mathbf{f}_i^{stoch})^2 \right> \tau^{solv} \; = \; 6 \, m_i \, \gamma_i \, k_B \, T \; .
+\label{eq:stoch}
+\end{equation}
+Here, $\left< (\mathbf{f}_i^{stoch})^2 \right>$ is the mean correlation of the
+friction force and $\tau^{solv}$ is the autocorrelation time of the solvent friction.
+Using the fractional solvent accessibility $\omega_i$ as scaling factor,
+we can derive the atom-specific friction parameter \gam:
+\begin{equation}
+\gamma^0_i \; = \; \frac{\tau^{solv}}{{6 \, k_B \, T}} \; \cdot \; \frac{\left< (\mathbf{f}_i^{stoch}(t) - <\mathbf{f}_i^{stoch}>)^2 \right>}{m_i} \; \cdot \; \frac{1}{\omega_i(t)} \; .
+\label{eq:gamma0}
+\end{equation} 
+\end{myblock}\vfill
+%______________________________________________________________________________
+\begin{myblock}{Autocorrelation}
 
 \end{myblock}\vfill
 %______________________________________________________________________________
@@ -123,6 +154,7 @@ negative \sig{} parameters, those of hydrophobic $C$ atoms are positive.
 }\end{minipage}
 \end{beamercolorbox}
 \end{column}
+%______________________________________________________________________________
 \end{columns}
 \end{frame}
 \end{document}
