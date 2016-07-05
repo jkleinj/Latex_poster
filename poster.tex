@@ -14,6 +14,7 @@
 \usepackage{siunitx} % pretty measurement unit rendering
 \usepackage{hyperref} % enable hyperlink for urls
 \usepackage{ragged2e}
+\usepackage{subfigure} % multiple figures in one figure environment
 \usepackage{calc}
 \newlength{\mylength}
 \usepackage{array,booktabs,tabularx}
@@ -102,8 +103,8 @@ those of hydrophobic $C$ atoms are positive.
 \vspace{2cm}
 \begin{figure}
 \begin{minipage}{1.0\textwidth}
-	\centering\includegraphics[width=0.7\textwidth]{./sigma.all.atomtype.box.sided.eps}
-	\caption{\sig{} parameters derived by force matching.}
+\centering\includegraphics[width=0.7\textwidth]{./sigma.all.atomtype.box.sided.eps}
+\caption{\sig{} parameters derived by force matching.}
 \label{fig:projection}
 \end{minipage}
 \end{figure}
@@ -138,11 +139,26 @@ we can derive the atom-specific friction parameter \gam:
 \end{myblock}\vfill
 %______________________________________________________________________________
 \begin{myblock}{Autocorrelation}
-
+\begin{figure}
+\begin{minipage}{1.0\textwidth}
+\subfigure[d1luqa\_ Gly1 CA ]{\includegraphics[width=0.45\textwidth]{./ac.C.dat.eps}}
+\subfigure[d1luqa\_ Asn34 ND2]{\includegraphics[width=0.45\textwidth]{./ac.N.dat.eps}} \\
+\caption{Exemplary exponential fits (solid line) of the auto-correlation function
+(circles) of the solvation forces on atoms C, N, O and S. The unit lag of the 
+auto-correlation functions corresponds to 100~fs of simulated time.}
+\label{fig:expfit}
+\end{minipage}
+\end{figure}
 \end{myblock}\vfill
 %______________________________________________________________________________
 \begin{myblock}{\gam{} Parameters}
-
+\begin{figure}
+\begin{minipage}{1.0\textwidth}
+\centering\includegraphics[width=0.7\textwidth]{./boxplot_gamma.all.eps}
+\caption{Boxplot of distributions of \gam{} parameters.}
+\label{fig:gammadstr}
+\end{minipage}
+\end{figure}
 \end{myblock}\vfill
 %______________________________________________________________________________
 \begin{myblock}{References}
