@@ -22,11 +22,11 @@
 \newcommand{\sig}{$\sigma_i^{SASA}$}
 \newcommand{\gam}{$\gamma_i^0$}
 \captionsetup[figure]{name=Fig.}
-\captionsetup[table]{name=Eq. for Fig. }
+\captionsetup[table]{name=Eqs. for Fig. }
 %______________________________________________________________________________
-\title{\huge Implicit Solvent Parametrisation by Force Matching}
-\author{Jens Kleinjung and Franca Fraternali}
-\institute[]{The Francis Crick Institute, King's College London}
+\title{\huge Implicit Solvent Parametrisation \\ by Force Matching}
+\author{Jens Kleinjung, The Francis Crick Institute, London}
+\institute[]{Franca Fraternali, King's College London}
 \date{\today}
 \newlength{\columnheight}
 \setlength{\columnheight}{105cm}
@@ -52,7 +52,7 @@ method to represent the solvent-solute interactions
 %______________________________________________________________________________
 \begin{myblock}{SASA Model}
 The interaction potential $V^{impl}$ between the solvent and all solute
-atoms $i$ can be assumed to be proportional to its solvent accessible
+atoms~$i$ can be assumed to be proportional to their solvent accessible
 surface area (SASA) \cite{Hasel:1988p116},
 scaled by an atom-specific energy term \sig:
 \begin{equation}
@@ -60,7 +60,7 @@ scaled by an atom-specific energy term \sig:
 V^{impl}(\mathbf{r}^N) \; = \; \sum_{i=1}^{N} \, \sigma_i^{SASA} \, A_i(\mathbf{r}^N) \; .
 \end{equation}
 The implicit solvent forces per atom are obtained from the derivative of the above
-equation with respect to $r_i$:
+equation with respect to $\mathbf{r}_i$:
 \begin{equation}
 \label{eq:Fimpl}
 \mathbf{f}_i^{impl} \; = \; - \, \sigma_i^{SASA} \, \frac{\partial A_i(\mathbf{r}^N)}{\partial \mathbf{r}_i} \; .
@@ -104,7 +104,7 @@ those of hydrophobic $C$ atoms are positive.
 \begin{figure}
 \begin{minipage}{1.0\textwidth}
 \centering\includegraphics[width=0.7\textwidth]{./sigma.all.atomtype.box.sided.eps}
-\caption{\sig{} parameters derived by force matching.}
+\caption{Atom-specific \sig{} parameters derived by force matching.}
 \label{fig:projection}
 \end{minipage}
 \end{figure}
@@ -138,13 +138,13 @@ we can derive the atom-specific friction parameter \gam:
 \end{equation} 
 \end{myblock}\vfill
 %______________________________________________________________________________
-\begin{myblock}{Autocorrelation}
+\begin{myblock}{Auto-correlation of Solvation Forces}
 \begin{figure}
 \begin{minipage}{1.0\textwidth}
 \subfigure[d1luqa\_ Gly1 CA ]{\includegraphics[width=0.45\textwidth]{./ac.C.dat.eps}}
 \subfigure[d1luqa\_ Asn34 ND2]{\includegraphics[width=0.45\textwidth]{./ac.N.dat.eps}} \\
 \caption{Exemplary exponential fits (solid line) of the auto-correlation function
-(circles) of the solvation forces on atoms C, N, O and S. The unit lag of the 
+(circles) of the solvation forces on atoms C an N. The unit lag of the 
 auto-correlation functions corresponds to 100~fs of simulated time.}
 \label{fig:expfit}
 \end{minipage}
@@ -152,10 +152,13 @@ auto-correlation functions corresponds to 100~fs of simulated time.}
 \end{myblock}\vfill
 %______________________________________________________________________________
 \begin{myblock}{\gam{} Parameters}
+Using the same protein set as for the \sig{} parameters in the left column,
+the atom-specific parameters \gam{} were derived from force fluctuations 
+in simulated trajectories.
 \begin{figure}
 \begin{minipage}{1.0\textwidth}
 \centering\includegraphics[width=0.7\textwidth]{./boxplot_gamma.all.eps}
-\caption{Boxplot of distributions of \gam{} parameters.}
+\caption{Atom-specific \gam{} parameters derived from force fluctuations.}
 \label{fig:gammadstr}
 \end{minipage}
 \end{figure}
